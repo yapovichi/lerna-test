@@ -11,8 +11,8 @@
     "build:file": "node bin/build-entry.js && node bin/build-theme.js && node bin/build-i18n.js && node bin/build-version.js",
     "build": "lerna run build",
     "clean": "lerna clean",
-    "bootstrap": "lerna bootstrap --registry http://af.hikvision.com.cn/artifactory/api/npm/npm-pbg",
-    "publish": "lerna publish --registry http://af.hikvision.com.cn/artifactory/api/npm/npm-pbg",
+    "bootstrap": "lerna bootstrap --registry http://af.hikvision.com.cn/artifactory/api/npm/npm-local",
+    "publish": "lerna publish --registry http://af.hikvision.com.cn/artifactory/api/npm/npm-local",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "commit": "npx git-cz",
     "send": "npm run build:file && vuepress build docs && node bin/send-to-web.js"
