@@ -1,0 +1,10 @@
+{
+ "name": "@lerna-test/locale",
+ "version": "0.0.0",
+ "description": " ",
+ "main": "index.js",
+ "author": "",
+ "dependencies": {
+  "deepmerge": "^1.5.2"
+ }
+}

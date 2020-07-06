@@ -1,0 +1,69 @@
+{
+  "name": "lerna-test",
+  "private": true,
+  "workspaces": [
+    "packages/*"
+  ],
+  "description": "map component lib",
+  "main": "index.js",
+  "scripts": {
+    "dev": "npm run build:file && vuepress dev docs",
+    "build:file": "node bin/build-entry.js && node bin/build-theme.js && node bin/build-i18n.js && node bin/build-version.js",
+    "build": "lerna run build",
+    "clean": "lerna clean",
+    "bootstrap": "lerna bootstrap --registry http://af.hikvision.com.cn/artifactory/api/npm/npm-pbg",
+    "publish": "lerna publish --registry http://af.hikvision.com.cn/artifactory/api/npm/npm-pbg",
+    "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
+    "commit": "npx git-cz",
+    "send": "npm run build:file && vuepress build docs && node bin/send-to-web.js"
+  },
+  "keywords": [
+    "map"
+  ],
+  "author": "yebo@hikvision.com.cn,wuminjie@hikvision.com.cn",
+  "license": "MIT",
+  "devDependencies": {
+    "@commitlint/cli": "^7.6.1",
+    "@commitlint/config-conventional": "^7.6.0",
+    "@hui/eslint-config-vue": "^1.0.0",
+    "@hui/stylelint-scss": "^1.0.1",
+    "@vue/babel-helper-vue-jsx-merge-props": "^1.0.0",
+    "EventEmitter": "^1.0.0",
+    "archiver": "^3.0.0",
+    "axios": "^0.19.0",
+    "babel-plugin-transform-builtin-extend": "^1.1.2",
+    "commitizen": "^3.1.1",
+    "conventional-changelog-cli": "^2.0.21",
+    "current-script-polyfill": "^1.0.0",
+    "cz-customizable": "^6.2.0",
+    "eslint": "^5.15.3",
+    "faker": "^4.1.0",
+    "highlightjs": "^9.12.0",
+    "hui": "^2.0.10",
+    "husky": "^2.3.0",
+    "json-templater": "^1.2.0",
+    "lerna": "^3.13.4",
+    "lint-staged": "^8.1.7",
+    "stylelint-webpack-plugin": "^0.10.5",
+    "svg-sprite-loader": "^4.1.6",
+    "uppercamelcase": "^3.0.0",
+    "vuepress": "^0.14.11"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
+    ]
+  },
+  "config": {
+    "commitizen": {
+      "path": "node_modules/cz-customizable"
+    }
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "post-merge": "lerna bootstrap",
+      "pre-commit": "lint-staged"
+    }
+  }
+}
